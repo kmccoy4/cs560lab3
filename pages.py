@@ -15,9 +15,36 @@ def main():
 
             while(line.find("</text>") < 0):
                 words = line.split()
-                for word in words:
-                    if word.find("[[") >= 0:
-                        print '%s%s' % (word,'\n');
+                num = 0
+                for index,word in enumerate(words):
+                    wpos = word.find("[[")
+                    if word.find(":") >= 0 or word.find(".jpg") >= 0:
+                        c = 1
+                    elif wpos >= 0:
+                        catstr = ""
+                        endpos = word.find("]]")
+                        if endpos > 0:
+                            print '%s%s'% ('\t', word[wpos+2:endpos])
+                        else:
+                            catstr += word
+                            catstr += " "
+                        if endpos < 0:
+                            #get next word
+                            tempword = ""
+                            num = 1
+                            if index+1 < len(words):
+                                tempword = words[index+1]
+                            while(tempword.find("]]") < 0):
+                                catstr += tempword
+                                catstr += " "
+                                num+=1
+                                if index+num >= len(words):
+                                    break
+                                tempword = words[index+num]
+                            catstr += tempword
+                            print '%s%s' % ('\t',catstr[catstr.find("[[")+2:catstr.find("]]")]);
+                        #endpos = word.find("]]")
+#print '%s%s' % ('\t',word[wpos+2:endpos]);
                 line = sys.stdin.next();
                 
 
