@@ -3,10 +3,10 @@
 import sys, re
 
 def main():
-    regex = re.compile('[^a-zA-Z]')
     for line in sys.stdin:
-        if line.find("<title>") > 0:
-            print '%s' % (line);
+        pos = line.find("<title>")
+        if pos >= 0 and line.find(":") < 0:
+            print '%s' % (line[pos+7:len(line)-9]);
 
 
 if __name__ == "__main__":
