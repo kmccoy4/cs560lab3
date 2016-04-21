@@ -17,7 +17,10 @@ def main():
             while(line.find("</text>") < 0):
                 links = re.findall(r"\[\[[\w|\|]*\]\]",line)
                 for l in links:
-                    print '%s%s' % ('\t',l)
+                    if l.find("|") < 0:
+                        print '%s%s' % ('\t',l[2:len(l)-2])
+                    else:
+                        print '%s%s' % ('\t',l[2:l.find("|")])
                 line = sys.stdin.next();
 
 
