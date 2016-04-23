@@ -7,7 +7,7 @@ def main():
     for line in sys.stdin:
         pos = line.find("<title>")
         if pos >= 0 and line.find(":") < 0:
-            print '%s%s' % ("Subject: ",line[pos+7:len(line)-9]);
+            print "%s%s\t1" % ("Subject: ",line[pos+7:len(line)-9]);
             #find associated text links
             line = sys.stdin.next();
             #skip lines not in text tags
