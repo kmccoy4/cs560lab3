@@ -75,6 +75,7 @@ for line in sys.stdin:
 #            pages[sub].remove(l)
 
 #print dictionary
+print len(pages)
 for sub in pages:
     print "Subject: %s" % sub
     print pages[sub]
