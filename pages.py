@@ -76,8 +76,11 @@ for line in sys.stdin:
 
 #print dictionary
 print len(pages)
+initpr = float(1.0/len(pages))
 for sub in pages:
     print "Subject: %s" % sub
+    #initialize PR to 1/#nodes for each subject
+    print initpr
     print pages[sub]
 #    for l in pages[sub]:
 #        print l
