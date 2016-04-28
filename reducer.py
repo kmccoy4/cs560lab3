@@ -1,11 +1,11 @@
-#mapper
+#reducer
 
 import sys, re
 
 
-totalsubs = 0
 subjects = {}
 rank = {}
+newrank = {}
 nodes = {}
 sub = ""
 #getinfo
@@ -22,14 +22,25 @@ for line in sys.stdin:
             nodes[line] = []
             nodes[line].append(sub)
         rank[line] = float(sys.stdin.next())
+        subjects[sub].append(line)
 
-for s in nodes:
-    print s
-    print nodes[s]
+for subj in nodes:
+    tmp = 0.0
+    for n in nodes[subj]:
+        try:
+            tmp += rank[n]/len(subjects[n])
+        except:
+            rank[n] = 0.0
+            tmp += 0.0
+    #calculate and add new rank
+    tmp = (tmp * 0.85) + ((1-0.85)/len(subjects))
+    newrank[subj] = tmp
+    #print subj
+    #print newrank[subj]
 
 #pagerank
-#for sub in subjects:
-#    print sub
-#    for l in subjects[sub]:
-#        print "%s,%.20f" % (l,float(rank[sub])/len(subjects[sub]))
+for s in subjects:
+    print "Subject: %s" % s
+    for l in subjects[s]:
+        print "%s\n%.30f" % (l,float(newrank[l]))
         
