@@ -23,24 +23,28 @@ for line in sys.stdin:
             nodes[line].append(sub)
         rank[line] = float(sys.stdin.next())
         subjects[sub].append(line)
-
-for subj in nodes:
-    tmp = 0.0
-    for n in nodes[subj]:
-        try:
-            tmp += rank[n]/len(subjects[n])
-        except:
-            rank[n] = 0.0
-            tmp += 0.0
-    #calculate and add new rank
-    tmp = (tmp * 0.85) + ((1-0.85)/len(subjects))
-    newrank[subj] = tmp
-    #print subj
-    #print newrank[subj]
+for x in range(1,25):
+    for subj in nodes:
+        tmp = 0.0
+        for n in nodes[subj]:
+            try:
+                tmp += rank[n]/len(subjects[n])
+            except:
+                rank[n] = 0.0
+                tmp += 0.0
+        #calculate and add new rank
+        tmp = (tmp * 0.85) + ((1-0.85)/len(subjects))
+        newrank[subj] = tmp
+        #print subj
+        #print newrank[subj]
+    rank = newrank
 
 #pagerank
 for s in subjects:
-    print "Subject: %s" % s
-    for l in subjects[s]:
-        print "%s\n%.30f" % (l,float(newrank[l]))
+    try:
+        print "%s,%.30f" % (s,float(rank[s]))
+    except:
+        print "%s,0.0"
+    #for l in subjects[s]:
+        #print "%s\n%.30f" % (l,float(newrank[l]))
         

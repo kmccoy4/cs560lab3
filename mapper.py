@@ -26,5 +26,5 @@ for i,line in enumerate(sys.stdin):
 for sub in subjects:
     print "Subject: %s" % sub
     for l in subjects[sub]:
-        print "%s\n%.30f" % (l,float(rank[sub])/len(subjects[sub]))
-        
+        #print "%s\n%.30f" % (l,float(rank[sub])/len(subjects[sub]))
+        print "%s\n%.30f" % (l,float(rank[sub]))
