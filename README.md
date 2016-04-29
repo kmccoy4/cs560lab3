@@ -3,7 +3,7 @@ https://dumps.wikimedia.org/simplewiki/latest/
 
 Preprocessing:
 
-python pages.py <wiki_titles_file> < simplewikifile.xml > output.txt
+python pages.py \<wiki_titles_file\> < simplewikifile.xml > output.txt
 
 Mapper (run once):
 
